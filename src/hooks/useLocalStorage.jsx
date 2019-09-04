@@ -1,6 +1,6 @@
-import React, { useSate } from "react";
+import { useState } from "react";
 
-const useLocalStorage = (key, initialValue) => {
+export const useLocalStorage = (key, initialValue) => {
     
     //Item is set to the desired key/value pair that was previously stored.
     const storedItem = JSON.parse(localStorage.getItem(key));
@@ -9,7 +9,6 @@ const useLocalStorage = (key, initialValue) => {
     //If storedItem does not already exist, then set storedValue equal to initialValue.
     const [storedValue, setStoredValue] = useState(storedItem || initialValue);
 
-    //
     const setValue = value => {
         window.localStorage.setItem(key, JSON.stringify(value));
         setStoredValue(value);
@@ -17,5 +16,3 @@ const useLocalStorage = (key, initialValue) => {
 
     return [storedValue, setValue];
 }
-
-export default useLocalStorage;
